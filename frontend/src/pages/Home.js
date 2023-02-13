@@ -27,15 +27,6 @@ const Home = () => {
     setFile1(e.target.files[0]);
   };
 
-  const onSubmit = (e) => {
-    var Form = document.forms("frm_upload");
-    var inputName = Form.elements['file1'].value;
-
-    var imgPath = inputName;
-    alert(imgPath);
-
-    
-  };
 
   return (
     <>
