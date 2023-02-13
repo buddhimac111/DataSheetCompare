@@ -9,13 +9,6 @@ const Home = () => {
     setFile1(e.target.files[0]);
   };
 
-  const onSubmit = (e) => {
-    var Form = document.forms("frm_upload");
-    var inputName = Form.elements['file1'].value;
-
-    var imgPath = inputName;
-    alert(imgPath);
-  };
 
   return (
     <>
@@ -23,7 +16,7 @@ const Home = () => {
         <div className="text-center my-5">
           <h2 className="headerTopic">Data Sheet Comparison</h2>
         </div>
-        <Form enctype="multipart/form-data" method="POST" action="http://localhost:5000/uploadFiles">
+        <Form encType="multipart/form-data" method="POST" action="http://localhost:5000/uploadFiles">
           <div className="w-100 container p-3">
             <FormGroup>
               <Label for="file">Upload Excel Sheet 1</Label>
