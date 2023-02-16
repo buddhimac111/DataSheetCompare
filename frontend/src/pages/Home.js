@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import NavBar from "../components/NavBar";
 import useUser from "../hooks/useUser";
 import { Link, useNavigate,} from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
@@ -30,12 +31,11 @@ const Home = () => {
 
   return (
     <>
+    <NavBar />
     {user && <p>You are logged as {user.email}</p> }
-    <Button onClick={() => signOut(getAuth())}>Sign out</Button>
-      <div id="uploadContainer" className="p-5 ">
-      <div className="text-end"><button style={{all: "unset"}}><i className="fa-solid fa-bars"></i></button></div>
-        <div className="text-center my-5">
-          <h2 className="headerTopic">Data Sheet Comparison</h2>
+      <div id="uploadContainer" className="p-5">
+        <div className="text-center my-3">
+          <p className="headerTopic">Data Sheets Comparison</p>
         </div>
         <Form encType="multipart/form-data" method="POST" action="http://localhost:5000/uploadFiles">
           <div className="w-100 container p-3">

@@ -29,7 +29,6 @@ getUsers();
 const Results = () => {
   return (
     <>
-      <div>Results Page</div>
     </>
   );
 };
