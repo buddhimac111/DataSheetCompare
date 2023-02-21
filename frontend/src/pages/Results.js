@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import NavBar from "../components/NavBar";
+import ScrollUpBtn from "../components/ScrollUpBtn";
 // let equal = [];
 // let not_eqaul = [];
 
@@ -76,20 +78,25 @@ class Res extends Component {
   }
   render() {
     return (
-      <div>
-        <div>Equal Data</div>
-        <div>
+      <>
+      <NavBar />
+      <div className="d-flex h-100">
+        <div className="w-100 p-4" id="matchBox">
+          <h2 className="pb-3">Matching IDs</h2><hr />
           {this.state.equal.map((data) => {
-            return <div key={data}>{data}</div>;
+            return <div key={data}><li className="pb-2">{data}</li></div>;
           })}
         </div>
-        <div>Not Equal Data</div>
-        <div>
+
+        <div className=" w-100 p-4" id="unMatchBox">
+        <h2 className="pb-3">Unmatching IDs</h2><hr />
           {this.state.not_eqaul.map((data) => {
-            return <div key={data}>{data}</div>;
+            return <div key={data}><li className="pb-2">{data}</li></div>;
           })}
         </div>
       </div>
+      <ScrollUpBtn />
+      </>
     );
   }
 }

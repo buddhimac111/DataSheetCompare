@@ -19,7 +19,16 @@
     border-radius: 3%;
     
 }
-
+#matchBox
+{
+    background-color: #bcf5bc;
+ 
+}
+#unMatchBox
+{
+    background-color: #f1a6a6;
+   
+}
 /******** OptionPage ********/
 
 /* .App {

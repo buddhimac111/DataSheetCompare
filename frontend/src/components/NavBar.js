@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -64,7 +65,8 @@ const NavBar = () => {
               <input className='form-control' placeholder="Search...." aria-label="Search" type='Search' />
               <MDBBtn outline>  <FontAwesomeIcon icon={faSearch} /></MDBBtn>
             </MDBInputGroup>
-            <button className="btn btn-primary ms-3 mb-2" onClick={() => signOut(getAuth())}>Logout</button>
+            <Link to="/">
+            <button className="btn btn-primary ms-3 mb-2" onClick={() => signOut(getAuth())}>Logout</button></Link>
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>
