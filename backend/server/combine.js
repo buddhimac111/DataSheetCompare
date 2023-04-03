@@ -37,10 +37,10 @@ app.post("/upload", (req, res) => {
   });
 
   console.log("Files uploaded!");
-  res.redirect("http://localhost:3000/test");
+  res.redirect("http://localhost:5000/getimages");
 });
 
-app.post("/getImages", (req, res) => {
+app.get("/getimages", (req, res) => {
   var targetDir = path.join(__dirname, sourceDir);
   var filesDir = fs.readdirSync(targetDir);
 
@@ -67,10 +67,12 @@ app.post("/getImages", (req, res) => {
   fileName2 = "newCombinedData.xlsx";
   console.log("Done");
 
-  res.redirect("http://localhost:3000/test2");
+  res.redirect("http://localhost:3000/results");
 });
 
-app.get("/test2", (req, res) => {
+app.get("/getresult", (req, res) => {
+  const uploadPath = './uploads/';
+
   let data1 = [];
   let data2 = [];
 
@@ -112,7 +114,17 @@ app.get("/test2", (req, res) => {
         notEqualIdArray.push(item);
       }
     }
-
+    //delete tempory uploaded files from server
+    fs.readdir(uploadPath, (err, files) => {
+      if (err) throw err;
+    
+      for (const file of files) {
+        fs.unlink(`${uploadPath}${file}`, err => {
+          if (err) throw err;
+          console.log(`Deleted file: ${file}`);
+        });
+      }
+    });
     // console.log("-----------------------------------------------------");
     let uniqueequalIdArray = [...new Set(equalIdArray)];
     // console.log(uniqueequalIdArray);

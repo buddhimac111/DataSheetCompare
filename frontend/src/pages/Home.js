@@ -20,15 +20,6 @@ const Home = () => {
     
 
 
-  const [file1, setFile1] = useState(null);
-  const [file2, setFile2] = useState(null);
-  
-
-  const onChange = (e) => {
-    setFile1(e.target.files[0]);
-  };
-
-
   return (
     <>
     <NavBar />
@@ -37,17 +28,17 @@ const Home = () => {
         <div className="text-center my-3">
           <p className="headerTopic">Data Sheets Comparison</p>
         </div>
-        <Form encType="multipart/form-data" method="POST" action="http://localhost:5000/uploadFiles">
+        <Form encType="multipart/form-data" method="POST" action="http://localhost:5000/upload">
           <div className="w-100 container p-3">
             <FormGroup>
-              <Label for="file">Upload Excel Sheet 1</Label>
-              <Input type="file" name="file1" id="file1" onChange={onChange} />
+              <Label for="file">Select Your Files</Label>
+              <Input type="file" name="excel" id="file1" multiple="true" required/>
             </FormGroup>
             <br />
-            <FormGroup>
+            {/* <FormGroup>
               <Label for="file">Upload Excel Sheet 2</Label>
               <Input type="file" name="file2" id="file2" onChange={onChange} />
-            </FormGroup>
+            </FormGroup> */}
 
             <Input
               type="submit"
