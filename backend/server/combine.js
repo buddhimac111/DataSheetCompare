@@ -37,7 +37,7 @@ app.post("/upload", (req, res) => {
   });
 
   console.log("Files uploaded!");
-  res.redirect("http://localhost:5000/getimages");
+  res.redirect("https://datasheets.onrender.com/getimages");
 });
 
 app.get("/getimages", (req, res) => {

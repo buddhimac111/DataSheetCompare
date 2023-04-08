@@ -110,7 +110,7 @@ const Result = () => {
   const [notEqualId, setnotEqualId] = useState([]);
 
   const fetchData = async () => {
-    await fetch("http://localhost:5000/getresult")
+    await fetch("https://datasheets.onrender.com/getresult")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data.equal);

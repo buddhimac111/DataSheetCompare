@@ -16,13 +16,13 @@ const Test = () => {
             <input type="submit" value="Upload your files"/>
         </form> */}
 
-        <form action="http://localhost:5000/upload"  enctype="multipart/form-data" method="POST">
+        <form action="https://datasheets.onrender.com/upload"  enctype="multipart/form-data" method="POST">
             Select images: <input type="file" name="excel" multiple="true"/>
             <input type="submit" value="Upload your files"/>
         </form>
         <br/>
 
-        <form action="http://localhost:5000/getImages"  enctype="multipart/form-data" method="POST">
+        <form action="https://datasheets.onrender.com/getImages"  enctype="multipart/form-data" method="POST">
             <input type="submit" value="Get Result"/>
         </form>
       </div>

@@ -6,7 +6,7 @@ const Test2 = () => {
   const [notEqualId, setnotEqualId] = useState([]);
 
   const fetchData = async () => {
-    await fetch("http://localhost:5000/test2")
+    await fetch("https://datasheets.onrender.com/test2")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data.equal);
