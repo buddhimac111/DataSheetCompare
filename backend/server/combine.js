@@ -67,7 +67,7 @@ app.get("/getimages", (req, res) => {
   fileName2 = "newCombinedData.xlsx";
   console.log("Done");
 
-  res.redirect("http://localhost:3000/results");
+  res.redirect("https://ffd0-44-211-246-247.ngrok-free.app/results");
 });
 
 app.get("/getresult", (req, res) => {
