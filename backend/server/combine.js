@@ -107,13 +107,22 @@ app.get("/getresult", (req, res) => {
     let notEqualIdArray = [];
     let jsonArray = {};
 
-    for (let item of data2) {
+    /*for (let item of data2) {
       if (data1.includes(item)) {
         equalIdArray.push(item);
       } else {
         notEqualIdArray.push(item);
       }
+    }*/
+
+    for (let item of data1) {
+      if (data2.includes(item)) {
+        equalIdArray.push(item);
+      } else {
+        notEqualIdArray.push(item);
+      }
     }
+    
     //delete tempory uploaded files from server
     fs.readdir(uploadPath, (err, files) => {
       if (err) throw err;
