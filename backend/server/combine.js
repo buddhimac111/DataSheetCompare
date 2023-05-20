@@ -130,6 +130,96 @@ app.get("/getresult", (req, res) => {
     }
     // Menna me kalla harida :)
 
+    
+    // console.log("-----------------------------------------------------");
+    let uniqueequalIdArray = [...new Set(equalIdArray)];
+    // console.log(uniqueequalIdArray);
+    // console.log("-----------------------------------------------------");
+    let uniquenotEqualIdArray = [...new Set(notEqualIdArray)];
+    // console.log(uniquenotEqualIdArray);
+    // console.log("-----------------------------------------------------");
+    let uniqueebayData = [...new Set(ebayData)];
+
+    var targetDir = path.join(__dirname, sourceDir);
+    var filesDir = fs.readdirSync(targetDir);
+
+    var amazonOrderIdData = [];
+    console.log("------------------------------------");
+
+    var idsInAmazonSheetButNotInVASheet = [];
+    var idsInVASheetButNotInAmazonSheet = [];
+
+    filesDir.forEach(function (file) {
+      var fileExtension = path.parse(file).ext;
+      if (fileExtension === ".csv") {
+        var fullFilePath = path.join(targetDir, file);
+        /* console.log(fullFilePath); */
+        // console.log(file);
+        var data = readFileToJson(fullFilePath);
+
+        data.map((item) => {
+          amazonOrderIdData.push(item["Order ID"]);
+        });
+
+        // TODO: Add file name to the array
+        /* amazonOrderIdData.map((item) => {
+          if (!data1.includes(item)) {
+            idsInAmazonSheetButNotInVASheet.push(item + " in " + file);
+          }
+        }); */
+      }
+    });
+
+    // console.log(amazonOrderIdData);
+
+    amazonOrderIdData = [...new Set(amazonOrderIdData)];
+
+    amazonOrderIdData.map((item) => {
+      if (!data1.includes(item)) {
+        idsInAmazonSheetButNotInVASheet.push(item);
+      }
+    });
+
+    // console.log(idsInAmazonSheetButNotInVASheet);
+
+    data1 = [...new Set(data1)];
+
+    data1.map((item) => {
+      if (!amazonOrderIdData.includes(item)) {
+        idsInVASheetButNotInAmazonSheet.push(item);
+      }
+    });
+
+    /* Validate Data */
+    console.log("/////////////////////////////////////////////");
+    /* idsInVASheetButNotInAmazonSheet.map((item) => {
+      if (amazonOrderIdData.includes(item)) {
+        console.log(item + " is in amazon sheet");
+      }
+    }); */
+
+    /* idsInAmazonSheetButNotInVASheet.map((item) => {
+      if (data1.includes(item)) {
+        console.log(item + " is in VA sheet");
+      }
+    }); */
+
+    /* jsonArray = {
+      equal: uniqueequalIdArray,
+      not_eqaul: uniquenotEqualIdArray,
+      ebay: uniqueebayData,
+    }; */
+
+    jsonArray = {
+      equal: uniqueequalIdArray,
+      idsInAmazonSheetButNotInVASheet: idsInAmazonSheetButNotInVASheet,
+      idsInVASheetButNotInAmazonSheet: idsInVASheetButNotInAmazonSheet,
+      ebay: uniqueebayData,
+    };
+
+    // console.log(jsonArray);
+    res.send(jsonArray);
+
     //delete tempory uploaded files from server
     fs.readdir(uploadPath, (err, files) => {
       if (err) throw err;
@@ -141,23 +231,6 @@ app.get("/getresult", (req, res) => {
         });
       }
     });
-    // console.log("-----------------------------------------------------");
-    let uniqueequalIdArray = [...new Set(equalIdArray)];
-    // console.log(uniqueequalIdArray);
-    // console.log("-----------------------------------------------------");
-    let uniquenotEqualIdArray = [...new Set(notEqualIdArray)];
-    // console.log(uniquenotEqualIdArray);
-    // console.log("-----------------------------------------------------");
-    let uniqueebayData = [...new Set(ebayData)];
-
-    jsonArray = {
-      equal: uniqueequalIdArray,
-      not_eqaul: uniquenotEqualIdArray,
-      ebay: uniqueebayData,
-    };
-
-    console.log(jsonArray);
-    res.send(jsonArray);
   } catch (err) {
     console.log(err);
   }

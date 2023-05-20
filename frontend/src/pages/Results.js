@@ -114,6 +114,7 @@ const Result = () => {
     await fetch("http://localhost:5000/getresult")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         // console.log(data.equal);
         // console.log(data.not_eqaul);
         setEqualId(data.equal);
