@@ -108,15 +108,17 @@ import { useEffect, useState } from "react";
 const Result = () => {
   const [equalId, setEqualId] = useState([]);
   const [notEqualId, setnotEqualId] = useState([]);
+  const [ebayId, setEbayId] = useState([]);
 
   const fetchData = async () => {
-    await fetch("https://datasheets.onrender.com/getresult")
+    await fetch("http://localhost:5000/getresult")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data.equal);
         // console.log(data.not_eqaul);
         setEqualId(data.equal);
         setnotEqualId(data.not_eqaul);
+        setEbayId(data.ebay);
       });
   };
 
@@ -142,6 +144,15 @@ const Result = () => {
             notEqualId.length > 0 &&
             notEqualId.map((notEqualIdObj, index) => (
               <li key={notEqualIdObj}>{notEqualIdObj}</li>
+            ))}
+        </div>
+
+        <div className=" w-100 p-4" id="ebayBox">
+        <h2 className="pb-3">Ebay IDs</h2><hr />
+        {ebayId &&
+            ebayId.length > 0 &&
+            ebayId.map((ebayIdObj, index) => (
+              <li key={ebayIdObj}>{ebayIdObj}</li>
             ))}
         </div>
       </div>

@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "combine.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node combine.js",
+    "start": "nodemon server.js",
     "dev": "nodemon combine.js",
     "dev1": "nodemon combine.js",
     "temp": "node combine.js"

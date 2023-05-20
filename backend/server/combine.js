@@ -37,7 +37,7 @@ app.post("/upload", (req, res) => {
   });
 
   console.log("Files uploaded!");
-  res.redirect("https://datasheets.onrender.com/getimages");
+  res.redirect("http://localhost:5000/getimages");
 });
 
 app.get("/getimages", (req, res) => {
@@ -67,14 +67,15 @@ app.get("/getimages", (req, res) => {
   fileName2 = "newCombinedData.xlsx";
   console.log("Done");
 
-  res.redirect("https://ffd0-44-211-246-247.ngrok-free.app/results");
+  res.redirect("http://localhost:3000/results");
 });
 
 app.get("/getresult", (req, res) => {
-  const uploadPath = './uploads/';
+  const uploadPath = "./uploads/";
 
   let data1 = [];
   let data2 = [];
+  let ebayData = [];
 
   try {
     const workbook = xlsx.readFile("uploads/" + fileName1);
@@ -98,23 +99,28 @@ app.get("/getresult", (req, res) => {
 
       arr.forEach((res) => {
         data1.push(res["AMZ Order ID"]);
+        if (res["Supplier"] == "Ebay") {
+          ebayData.push(res["AMZ Order ID"]);
+        }
       });
     }
 
     console.log(data1);
+    // console.log(ebayData);
 
     let equalIdArray = [];
     let notEqualIdArray = [];
     let jsonArray = {};
 
-    /*for (let item of data2) {
+    /* for (let item of data2) {
       if (data1.includes(item)) {
         equalIdArray.push(item);
       } else {
         notEqualIdArray.push(item);
       }
-    }*/
+    } */
 
+    // Menna methana change karapan harida :)
     for (let item of data1) {
       if (data2.includes(item)) {
         equalIdArray.push(item);
@@ -122,13 +128,14 @@ app.get("/getresult", (req, res) => {
         notEqualIdArray.push(item);
       }
     }
-    
+    // Menna me kalla harida :)
+
     //delete tempory uploaded files from server
     fs.readdir(uploadPath, (err, files) => {
       if (err) throw err;
-    
+
       for (const file of files) {
-        fs.unlink(`${uploadPath}${file}`, err => {
+        fs.unlink(`${uploadPath}${file}`, (err) => {
           if (err) throw err;
           console.log(`Deleted file: ${file}`);
         });
@@ -141,9 +148,12 @@ app.get("/getresult", (req, res) => {
     let uniquenotEqualIdArray = [...new Set(notEqualIdArray)];
     // console.log(uniquenotEqualIdArray);
     // console.log("-----------------------------------------------------");
+    let uniqueebayData = [...new Set(ebayData)];
+
     jsonArray = {
       equal: uniqueequalIdArray,
       not_eqaul: uniquenotEqualIdArray,
+      ebay: uniqueebayData,
     };
 
     console.log(jsonArray);
@@ -153,6 +163,6 @@ app.get("/getresult", (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
