@@ -6,7 +6,9 @@ const fileUpload = require("express-fileupload");
 var path = require("path");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*",
+}));
 app.use(fileUpload());
 
 const sourceDir = "uploads";
