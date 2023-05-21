@@ -23,10 +23,13 @@ function readFileToJson(filename) {
   return data;
 }
 
-app.get("/", (req, res) => {
-  res.render("upload");
-});
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
 
+// Render the 'index.ejs' view
+app.get('/', (req, res) => {
+  res.render('index');
+});
 app.post("/upload", (req, res) => {
   const files = req.files;
 
