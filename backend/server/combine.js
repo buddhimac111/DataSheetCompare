@@ -28,7 +28,7 @@ app.set('view engine', 'ejs');
 
 // Render the 'index.ejs' view
 app.get('/', (req, res) => {
-  res.render('index');
+  res.send('index');
 });
 app.post("/upload", (req, res) => {
   const files = req.files;
