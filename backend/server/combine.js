@@ -39,7 +39,7 @@ app.post("/upload", (req, res) => {
   });
 
   console.log("Files uploaded!");
-  res.redirect("http://localhost:5000/getimages");
+  res.redirect("https://datasheets.onrender.com/getimages");
 });
 
 app.get("/getimages", (req, res) => {
@@ -69,7 +69,7 @@ app.get("/getimages", (req, res) => {
   fileName2 = "newCombinedData.xlsx";
   console.log("Done");
 
-  res.redirect("http://localhost:3000/results");
+  res.redirect("https://datasheet-compare.onrender.com/results");
 });
 
 app.get("/getresult", (req, res) => {
