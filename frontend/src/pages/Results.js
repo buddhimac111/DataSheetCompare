@@ -10,7 +10,7 @@ const Result = () => {
   const [ebayId, setEbayId] = useState([]);
 
   const fetchData = async () => {
-    await fetch("https://ec18-123-231-125-62.ngrok-free.app/getresult")
+    await fetch("https://datasheets.onrender.com/getresult")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
