@@ -50,11 +50,11 @@ app.post("/upload", (req, res) => {
 
     var combinedData = [];
 
-    filesDir.forEach(function (file) {
+    filesDir.forEach (function (file) {
       var fileExtension = path.parse(file).ext;
       if (fileExtension === ".csv") {
         var fullFilePath = path.join(targetDir, file);
-        var data = readFileToJson(fullFilePath);
+       var data = readFileToJson(fullFilePath);
         combinedData = combinedData.concat(data);
       }
     });
@@ -71,7 +71,7 @@ app.post("/upload", (req, res) => {
     fileName2 = "newCombinedData.xlsx";
     console.log("Done");
 
-    res.redirect("https://datasheet-compare.onrender.com/results");
+    res.redirect("http://localhost:3000/results");
 
 
 
