@@ -71,7 +71,7 @@ app.post("/upload", (req, res) => {
   fileName2 = "newCombinedData.xlsx";
   console.log("Done");
 
-  res.redirect("http://localhost:3000/results");
+  res.redirect("https://d95e-44-211-226-246.ngrok-free.app/results");
 
 
 
