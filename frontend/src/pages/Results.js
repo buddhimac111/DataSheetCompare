@@ -11,6 +11,7 @@ const Result = () => {
 
   const fetchData = async () => {
     await fetch("https://datasheets.onrender.com/getresult")
+    /* await fetch("http://localhost:5000/getresult") */
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

@@ -29,6 +29,7 @@ const Home = () => {
           <p className="headerTopic">Data Sheets Comparison</p>
         </div>
         <Form encType="multipart/form-data" method="POST" action="https://datasheets.onrender.com/upload">
+        {/* <Form encType="multipart/form-data" method="POST" action="http://localhost:5000/upload"> */}
           <div className="w-100 container p-3">
             <FormGroup>
               <Label for="file">Select Your Files</Label>
