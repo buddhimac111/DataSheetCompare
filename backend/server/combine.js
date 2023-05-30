@@ -77,7 +77,7 @@ app.get("/getimages", (req, res) => {
   fileName2 = "newCombinedData.xlsx";
   console.log("Done");
 
-  res.redirect("https://datasheets.onrender.com/results");
+  res.redirect("http://localhost:3000/results");
 });
 
 app.get("/getresult", (req, res) => {
