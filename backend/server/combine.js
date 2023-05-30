@@ -43,7 +43,35 @@ app.post("/upload", (req, res) => {
 
   console.log("Files uploaded!");
 
-  res.redirect("https://datasheets.onrender.com/getimages");
+  // res.redirect("http://localhost:5000/getimages");
+
+  var targetDir = path.join(__dirname, sourceDir);
+  var filesDir = fs.readdirSync(targetDir);
+
+  var combinedData = [];
+
+  filesDir.forEach(function (file) {
+    var fileExtension = path.parse(file).ext;
+    if (fileExtension === ".csv") {
+      var fullFilePath = path.join(targetDir, file);
+      var data = readFileToJson(fullFilePath);
+      combinedData = combinedData.concat(data);
+    }
+  });
+
+  console.log(combinedData.length);
+
+  var newWB = xlsx.utils.book_new();
+  var newWs = xlsx.utils.json_to_sheet(combinedData);
+  xlsx.utils.book_append_sheet(newWB, newWs, "Data");
+
+  xlsx.writeFile(newWB, "uploads/newCombinedData.xlsx");
+
+  fileName1 = "VA-sheet.xlsx";
+  fileName2 = "newCombinedData.xlsx";
+  console.log("Done");
+
+  res.redirect("http://localhost:3000/results");
 
 
 
